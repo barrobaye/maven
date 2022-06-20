@@ -8,29 +8,37 @@ import java.sql.SQLException;
 import com.allocation.model.Personne;
 
 public class PersonneDao {
-    public ResultSet getAllPersonnes() throws SQLException{
+    public PersonneDao() {
+    }
+
+    public static ResultSet getAllPersones() throws SQLException{
         Connection conn = DB.getConnection();
-        String query = "Select * From Personne";
+        String query = "Select *From Personne";
         PreparedStatement statement = conn.prepareStatement(query);
         ResultSet rs = statement.executeQuery();
         return rs;
     }
 
-    public boolean AddPersonne(Personne personne) throws SQLException  {
+    public boolean AddPersonne(Personne personne) {
         Connection conn = DB.getConnection();
-        String query = "INSER INTO personne(nom ,prenom,telephone)VALUES (?,?,?)";
+        String query = "INSERT INTO Personne (nom,prenom,telephone) VALUES(?,?,?)";
         try {
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setString(1,personne.getNom());
-            statement.setString(1,personne.getPrenom());
-            statement.setString(1,personne.getTelephone());
+            statement.setString(2,personne.getPrenom());
+            statement.setString(3,personne.getTelephone());
 
             statement.execute();
             statement.close();
             conn.close();
+            System.out.println("ajouter avec success");
+        return true;
+       
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("ajout non réussit");
         return false;
 
     }

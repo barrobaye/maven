@@ -1,12 +1,21 @@
 package com.allocation.model;
 
 public class Personne {
-    private int id;
+   protected int id;
     public String nom;
     public String prenom;
     public String telephone;
 
     
+   
+    public Personne(int id, String nom, String prenom, String telephone) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.telephone = telephone;
+    }
+    public Personne() {
+    }
     public String getNom() {
         return nom;
     }
@@ -31,9 +40,8 @@ public class Personne {
     public void setId(int id) {
         this.id = id;
     }
+    
     public void add(Personne personne) {
     }
-
-
-
+  
 }

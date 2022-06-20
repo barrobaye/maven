@@ -6,6 +6,6 @@ import com.allocation.model.Personne;
 
 public interface IPersonne {
     boolean AddPersonne (Personne personne);
-    public List<Personne> getAllPersonnes();
-   public  Personne getPersonnesById(int Id);
+    List<Personne> getAllPersones();
+  Personne getPersonnesById(int Id);
 }

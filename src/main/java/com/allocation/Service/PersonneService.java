@@ -1,40 +1,41 @@
-package com.allocation.Service;
+    package com.allocation.Service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.allocation.Interface.IPersonne;
 import com.allocation.dao.PersonneDao;
+import com.allocation.Interface.IPersonne;
+
 import com.allocation.model.Personne;
 
 public class PersonneService  implements IPersonne{
 
     @Override
-    public boolean AddPersonne(Personne personne) {
+    public boolean AddPersonne(Personne personne){
         PersonneDao personneDao = new PersonneDao();
-            try {
-                return personneDao.AddPersonne(personne);
-            } catch (SQLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            return false;
+        try {
+            return personneDao.AddPersonne(personne);
+
+        } catch (Exception e) {
+            System.out.println("non ajouter");
+        }
+         return true;          
     }
 
     @Override
-    public List<Personne> getAllPersonnes() {
-        PersonneService personneDao = new PersonneService();
+    public List<Personne>  getAllPersones() {
         List<Personne> personnes = new ArrayList<>();
         try {
-            ResultSet rs = (ResultSet) personneDao.getAllPersonnes();
-            if (rs!= null){
+            ResultSet rs =  PersonneDao.getAllPersones();
+            if (rs != null){
                 while (rs.next()){
                     Personne personne =new Personne();
+                    personne.setId(rs.getInt("id"));
                     personne.setNom(rs.getString("nom"));
                     personne.setPrenom(rs.getString("prenom"));
-                    personne.setNom(rs.getString("telephone"));
+                    personne.setTelephone(rs.getString("telephone"));
+                   
                     
                     personnes.add(personne);
                 }
