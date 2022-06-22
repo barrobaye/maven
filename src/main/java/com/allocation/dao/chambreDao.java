@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.allocation.model.Chambre;
+import com.allocation.model.TypeChambre;
 
 public class chambreDao {
     public static ResultSet allChambre() throws SQLException{
@@ -23,7 +24,7 @@ public class chambreDao {
         try {
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setInt(1,chambre.getNumbChambre());
-            statement.setString(2,chambre.getTypeChambre());
+            statement.setString(2,chambre.getTypeChambre().toString());
             statement.setInt(3,chambre.getNumbEtage());
 
             statement.execute();

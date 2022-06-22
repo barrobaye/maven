@@ -2,11 +2,16 @@ package com.allocation;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Scanner;
 
+import com.allocation.Service.AcceuilService;
 import com.allocation.Service.ChambreService;
+import com.allocation.Service.PavillonService;
 import com.allocation.Service.PersonneService;
 import com.allocation.dao.DB;
+import com.allocation.dao.chambreDao;
 import com.allocation.model.Chambre;
+import com.allocation.model.Pavillon;
 import com.allocation.model.Personne;
 
 /**
@@ -15,16 +20,35 @@ import com.allocation.model.Personne;
  */
 public class App 
 {
+    public static void main( String[] args ) throws SQLException{
+        System.out.println("Allocation Etudiant"); 
+        AcceuilService acceuil = new AcceuilService();
+        PavillonService pavillonservice = new PavillonService();
+        ChambreService chambreservice = new ChambreService();
+        Pavillon pavillon = new Pavillon();
+        Chambre chambre = new Chambre();
+        Scanner clic =  new Scanner(System.in);
+       Scanner  sc =  new Scanner(System.in);
+        int choix = 0;
+    do{
+        acceuil.menu();
+        choix = clic.nextInt();
+        switch(choix){
+            case 1:
+            System.out.println("^^^^^^^^^^ Ajoute Chambre ^^^^^^^^^^^^");
+                                chambreservice.addChambre(chambre);
+                                break;
+            case 2:
+            System.out.println("^^^^^^^^^^ Ajoute Pavillon ^^^^^^^^^^^^");
+                            pavillonservice.addPavillon(pavillon);
 
+         default:
+            break;
+        }
+    }while (choix >= 6);
+    
 
-    public static void main( String[] args ) throws SQLException
-    {
-       
-        System.out.println( "Hello World!" );
-        
-     
-    }
-
+}
 }
 /*  ChambreService chambreservice = new ChambreService();
         Chambre chambre = new Chambre();
