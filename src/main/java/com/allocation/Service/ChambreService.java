@@ -1,5 +1,6 @@
 package com.allocation.Service;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,11 +10,15 @@ import java.util.Scanner;
 import com.allocation.Interface.IChambre;
 import com.allocation.dao.chambreDao;
 import com.allocation.model.Chambre;
+import com.allocation.model.Pavillon;
 import com.allocation.model.TypeChambre;
 
 public  class ChambreService implements IChambre {
-
+    chambreDao chambredao ;
     Scanner  sc =  new Scanner(System.in);
+    public ChambreService(Connection conn) {
+        chambredao = new chambreDao(conn);
+    }
 
     @Override
     public boolean addChambre(Chambre chambre) {
@@ -31,7 +36,6 @@ public  class ChambreService implements IChambre {
         }
         System.out.println("Saisir l'Etage de la chambre");
         chambre.setNumbEtage(sc.nextInt());
-        chambreDao chambredao = new chambreDao();
            return chambredao.addChambre(chambre); 
     }
 
@@ -39,7 +43,7 @@ public  class ChambreService implements IChambre {
     public  List<Chambre> allChambre() {
         List<Chambre> chambres = new ArrayList<>();
         try {
-            ResultSet rs =  chambreDao.allChambre();
+            ResultSet rs =  chambredao.allChambre();
             if (rs != null){
                 while (rs.next()){
                     Chambre chambre=new Chambre();
@@ -63,7 +67,11 @@ public  class ChambreService implements IChambre {
         return chambres;
        
     }
-
+    @Override
+    public boolean deletChambre(Chambre chambre) {
+        return chambredao.deleteChambre(chambre);
+    }
+  
     @Override
     public Chambre getChambreByEtat() {
         return null;

@@ -9,27 +9,65 @@ import com.allocation.model.Chambre;
 import com.allocation.model.TypeChambre;
 
 public class chambreDao {
-    public static ResultSet allChambre() throws SQLException{
-        Connection conn = DB.getConnection();
+    private Connection con;
+
+    public chambreDao(Connection conn) {
+        this.con = conn;
+    }
+    public ResultSet allChambre() throws SQLException{
+        if (con == null) {
+            con = DB.getConnection();
+        }        
         String query = "Select * From Chambre";
-        PreparedStatement statement = conn.prepareStatement(query);
+        PreparedStatement statement = con.prepareStatement(query);
         ResultSet rs = statement.executeQuery();
         return rs;
+    }
+    public ResultSet findChambre(int id){
+        if (con == null) {
+            con = DB.getConnection();
+        }        String query = "SELECT * From Chambre WHERE id = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1,id);
+          ResultSet rs =  statement.executeQuery();
+          return rs;
+        } catch (Exception e) {
+           System.out.println(e.getMessage());
+        }
+        return null;
+    }
+    public boolean deleteChambre(Chambre chambre){
+        if (con == null) {
+            con = DB.getConnection();
+        }        String query = "DELETE FROM Chambre WHERE id=?";
+        try {
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1,chambre.getId());
+            statement.execute();
+            statement.close();
+            System.out.println("Supprimer avec success");
+            return true;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Delete non reussie");
+        return false;
     }
 
 
     public boolean addChambre(Chambre chambre){
-        Connection conn = DB.getConnection();
-        String query = "INSERT INTO Chambre (numbChambre,typeChambre,numbEtage) VALUES(?,?,?)";
+        if (con == null) {
+            con = DB.getConnection();
+        }        String query = "INSERT INTO Chambre (numbChambre,typeChambre,numbEtage) VALUES(?,?,?)";
         try {
-            PreparedStatement statement = conn.prepareStatement(query);
+            PreparedStatement statement = con.prepareStatement(query);
             statement.setInt(1,chambre.getNumbChambre());
             statement.setString(2,chambre.getTypeChambre().toString());
             statement.setInt(3,chambre.getNumbEtage());
 
             statement.execute();
             statement.close();
-            conn.close();
             System.out.println("ajouter avec success");
         return true;
         } catch (Exception e) {
