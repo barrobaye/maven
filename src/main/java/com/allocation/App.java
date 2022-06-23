@@ -1,5 +1,6 @@
 package com.allocation;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
@@ -18,70 +19,60 @@ import com.allocation.model.Personne;
  * Hello world!
  *
  */
-public class App 
-{
-    public static void main( String[] args ) throws SQLException{
-        System.out.println("Allocation Etudiant"); 
+public class App {
+    public static void main(String[] args)throws Exception{
+        Connection conn = DB.getConnection();
+        System.out.println("Allocation Etudiant");
         AcceuilService acceuil = new AcceuilService();
-        PavillonService pavillonservice = new PavillonService();
-        ChambreService chambreservice = new ChambreService();
+        PavillonService pavillonservice = new PavillonService(null);
+        ChambreService chambreservice = new ChambreService(null);
         Pavillon pavillon = new Pavillon();
         Chambre chambre = new Chambre();
-        Scanner clic =  new Scanner(System.in);
-       Scanner  sc =  new Scanner(System.in);
+        Scanner clic = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
+        int idPavillon;
         int choix = 0;
-    do{
-        acceuil.menu();
-        choix = clic.nextInt();
-        switch(choix){
-            case 1:
-            System.out.println("^^^^^^^^^^ Ajoute Chambre ^^^^^^^^^^^^");
-                                chambreservice.addChambre(chambre);
-                                break;
-            case 2:
-            System.out.println("^^^^^^^^^^ Ajoute Pavillon ^^^^^^^^^^^^");
-                            pavillonservice.addPavillon(pavillon);
-
-         default:
-            break;
-        }
-    }while (choix >= 6);
-    
-
+        do {
+            acceuil.menuAcceuil();
+            choix = clic.nextInt();
+            switch (choix) {
+                case 1:
+                    System.out.println("^^^^^^^^^^Chambre^^^^^^^^^^^^");
+                        acceuil.menuChambre();
+                        int choceChambre = 0;
+                        choceChambre = clic.nextInt();
+                        switch(choceChambre){
+                          case 1:
+                          chambreservice.addChambre(chambre);
+                          case 2:
+                          System.out.println("saisir l'id du Chambre");
+                          idPavillon = sc.nextInt();
+                          pavillonservice.delete(idPavillon);                        
+                        }
+                case 2:
+                    System.out.println("^^^^^^^^^^Pavillon ^^^^^^^^^^^^");
+                    acceuil.menuPavillon();
+                    int chocepav = 0;
+                    chocepav = clic.nextInt();
+                    switch(chocepav){
+                      case 1:
+                      pavillonservice.addPavillon(pavillon);
+                      break;
+                      case 2:
+                      System.out.println("saisir l'id du Pavillon");
+                      idPavillon = sc.nextInt();
+                      pavillonservice.delete(idPavillon);
+                      break;
+                    }
+                case 3:
+                    System.out.println("^^^^^^^^^^ Quitter ^^^^^^^^^^^^");
+                    break;
+                     
+                default:
+                    break;
+            }
+        } while (choix >= 4);
+        conn.close();
+    }
 }
-}
-/*  ChambreService chambreservice = new ChambreService();
-        Chambre chambre = new Chambre();
-        chambre.setNumbChambre(23);
-        chambre.setNumbEtage(2);
-        chambre.setTypeChambre("ezrezr");
-        chambreservice.addChambre(chambre);  */
-/* 
-        List<Chambre> chambre = chambreservice.allChambre();
-        for ( Chambre chambres: chambre){
-            System.out.println("##########################");
-            System.out.println("ID : " + chambre.getId());
-            System.out.println("Nom : " + chambre.getNumbChambre());
-            System.out.println("Prenom : " + chambre.getTypeChambre()); */
-
-       
-         
-
-
-    /*     PersonneService personneService = new PersonneService();
-        Personne personnel = new Personne();
-         personnel.setNom("uyujkjjbkjkj");
-        personnel.setPrenom( "jjjjj");
-        personnel.setTelephone( "2217778911");
-        personneService.AddPersonne(personnel);  */
-         
-     /*  List<Personne> personnes = personneService.getAllPersones();
-
-        for (Personne personne : personnes) {
-            System.out.println("##########################");
-            System.out.println("ID : " + personne.getId());
-            System.out.println("nom : " + personne.getNom());
-            System.out.println("Prenom : " + personne.getPrenom());
-            System.out.println("Téléphone: " + personne.getTelephone());
-            
-        } */
+   

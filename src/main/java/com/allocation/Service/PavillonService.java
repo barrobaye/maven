@@ -1,5 +1,6 @@
 package com.allocation.Service;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,6 +13,17 @@ import com.allocation.model.Pavillon;
 
 public class PavillonService implements IPavillon {
     Scanner  sc =  new Scanner(System.in);
+   PavillonService pavillonservice;
+  PavillonDao pavillondao;
+   
+
+
+
+    public PavillonService(Connection con) {
+        pavillondao = new PavillonDao(con);
+}
+
+
 
     @Override
     public boolean addPavillon(Pavillon pavillon) {
@@ -19,7 +31,6 @@ public class PavillonService implements IPavillon {
         pavillon.setNumbPavillon(sc.nextInt());
         System.out.println("Saisir le nombre d'Etage ");
         pavillon.setNombreEtage(sc.nextInt());
-        PavillonDao pavillondao = new PavillonDao();
            return pavillondao.addPavillon(pavillon); 
             }
 
@@ -27,17 +38,15 @@ public class PavillonService implements IPavillon {
 
     @Override
     public List<Pavillon> allPavillon() {
-        List<Pavillon> pavillon = new ArrayList<>();
+        List<Pavillon> pavillons = new ArrayList<>();
         try {
-            ResultSet rs =  PavillonDao.getAllPavillon();
+            ResultSet rs =  pavillondao.getAllPavillon();
             if (rs != null){
                 while (rs.next()){
-                    pavillon =new Pavillon();
+                   Pavillon pavillon =new Pavillon();
                     pavillon.setId(rs.getInt("id"));
-                    pavillon.setNumbPavillon(rs.getString("numbPavillon"));
-                    pavillon.setNombrePavillon(rs.getString("nombrePavillon"));
-                   
-                    
+                    pavillon.setNombreEtage(rs.getInt("nombreEtage"));
+                    pavillon.setNumbPavillon(rs.getInt("numbPavillon"));
                     pavillons.add(pavillon);
                 }
             }
@@ -47,35 +56,47 @@ public class PavillonService implements IPavillon {
 
         return pavillons;
     }
+    public void delete(int idPavillon){
+        Pavillon pavDelete = pavillonservice.findPavillonById(idPavillon);
+        if (pavDelete == null) {
+            System.out.println("pavillon inexistant");
+        }else{
+            pavillonservice.deletPavillon(pavDelete);
+        }
+    }
 
     @Override
     public boolean deletPavillon(Pavillon pavillon) {
-        System.out.println("Saisir l'id du Pavillon");
-        if(Pavillon.equals(pavillon.getId()))== sc.nextInt
-        pavillon.setId(sc.nextInt());
-        return false;
-    }
-
-    @Override
-    public boolean deletPavillon(int id, Pavillon pavillon) {
-        // TODO Auto-generated method stub
-        return false;
+        return pavillondao.deletePavillon(pavillon);
     }
 
 
 
     @Override
-    public boolean addPavillon(Pavillon pavillon) {
-        // TODO Auto-generated method stub
-        return false;
+    public Pavillon findPavillonById(int id) {
+        Pavillon pavillon = new Pavillon();
+        ResultSet rs = pavillondao.findPavillon(id);
+        try {
+            while (rs.next()){
+                pavillon.setId(rs.getInt("id"));
+                pavillon.setNombreEtage(rs.getInt("nombreEtage"));
+                pavillon.setNumbPavillon(rs.getInt("numbPavillon"));
+            }
+            return pavillon;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
+   
 
 
-    @Override
-    public boolean deletPavillon(Pavillon pavillon) {
-        // TODO Auto-generated method stub
-        return false;
-    }
+
+  
+
+
+
+ 
     
 }
