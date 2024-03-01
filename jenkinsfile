@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                script {
+                    // Cloner le référentiel Git
+                    git 'https://github.com/barrobaye/JenkisTest'
+                }
+            }
+        }
+
+        stage('Build Maven Package') {
+            steps {
+                script {
+                    // Se déplacer dans le répertoire cloné
+                    sh 'mvn package'
+
+                }
+            }
+        }
+
+        stage('Run') {
+            steps {
+                script {
+                    // Exécuter le fichier compilé
+                  dir('src/main/ressources') {
+                    sh 'java Main'
+                }
+                }
+            }
+        }
+    }
+}
