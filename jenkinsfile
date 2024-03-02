@@ -1,23 +1,33 @@
 pipeline {
     agent any
-    tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "M3"
-    }
+
     stages {
-        stage('Clone') {
+        stage('Clone Repository') {
             steps {
-                // Get some code from a GitHub repository
-                git 'https://github.com/barrobaye/maven.git'
-                sh "mvn -Dmaven.test.failure.ignore=true clean package"
-            }
-            post {
-                always {
-                      junit 'target/surefire-reports/*.xml'
+                script {
+                    // Cloner le référentiel Git
+                    git 'https://github.com/barrobaye/JenkisTest'
                 }
-                success {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
+            }
+        }
+
+        stage('Build Maven Package') {
+            steps {
+                script {
+                    // Se déplacer dans le répertoire cloné
+                    sh 'mvn package'
+
+                }
+            }
+        }
+
+        stage('Run') {
+            steps {
+                script {
+                    // Exécuter le fichier compilé
+                  dir('src/main/ressources') {
+                    sh 'java Main'
+                }
                 }
             }
         }

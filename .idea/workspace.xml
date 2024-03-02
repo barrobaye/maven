@@ -5,8 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dce5d3d1-5d61-487f-81d0-d8a987d8e37a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/allocation/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/allocation/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/allocation/Service/AcceuilService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/allocation/Service/AcceuilService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/allocation/Service/ChambreService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/allocation/Service/ChambreService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/allocation/Service/PavillonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/allocation/Service/PavillonService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/allocation/Service/PersonneService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/allocation/Service/PersonneService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/allocation/dao/DB.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/allocation/dao/DB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/allocation/dao/PavillonDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/allocation/dao/PavillonDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/allocation/dao/PersonneDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/allocation/dao/PersonneDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/allocation/dao/chambreDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/allocation/dao/chambreDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/allocation/model/Chambre.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/allocation/model/Chambre.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/allocation/model/Pavillon.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/allocation/model/Pavillon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/allocation/model/Personne.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/allocation/model/Personne.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/allocation/model/TypeChambre.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/allocation/model/TypeChambre.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +67,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="mavenjenkins" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="mavenjenkins" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
@@ -78,7 +103,6 @@
       <updated>1709324913811</updated>
       <workItem from="1709324914866" duration="1957000" />
       <workItem from="1709327079618" duration="53000" />
-      <workItem from="1709337198908" duration="1303000" />
     </task>
     <servers />
   </component>
