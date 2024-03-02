@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dce5d3d1-5d61-487f-81d0-d8a987d8e37a" name="Changes" comment="remove error">
-      <change afterPath="$PROJECT_DIR$/defaults/main.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/host.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meta/main.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/playbook.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task/main.yml" afterDir="false" />
+    <list default="true" id="dce5d3d1-5d61-487f-81d0-d8a987d8e37a" name="Changes" comment="remove to ansible">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/host.yml" beforeDir="false" afterPath="$PROJECT_DIR$/host.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playbook.yml" beforeDir="false" afterPath="$PROJECT_DIR$/playbook.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +107,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709347245222</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="remove to ansible">
+      <option name="closed" value="true" />
+      <created>1709369504153</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1709369504153</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,6 +136,7 @@
     <MESSAGE value="okin new" />
     <MESSAGE value="news" />
     <MESSAGE value="remove error" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove error" />
+    <MESSAGE value="remove to ansible" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove to ansible" />
   </component>
 </project>
