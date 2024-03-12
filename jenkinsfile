@@ -1,30 +1,23 @@
 pipeline {
-    agent any
-    stages {
-        stage('Ansible') {
-            steps {
-                ansiblePlaybook(
-                    colorized: true,
-                    become: true,
-                    playbook: 'playbook.yml',
-                    inventory: 'host.yml'
-                )
-            }
-        }
-        stage('Clone') {
-            steps {
-                git 'https://github.com/barrobaye/maven.git'
-                sh "mvn -Dmaven.test.failure.ignore=true clean package"
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-                success {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
-                }
-            }
+    agent any 
+    triggers{
+        githubpush()
+    }
+  stages{
+      stage('Build'){
+        steps{
+            echo 'Building...'
         }
     }
+    stage('TEst'){
+        steps{
+            echo 'Testing...'
+        }
+    }
+    stage('Deploy'){
+        steps{
+            echo 'Deploying...'
+        }
+    }
+  }
 }
