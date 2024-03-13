@@ -1,20 +1,21 @@
 ---
-- name: Vérifier si Maven est déjà installé
+- name: Installation de Java, Tomcat et démarrage du service
   hosts: all
   become: yes
+
   tasks:
-    - name: Vérifier si Maven est déjà installé
-      command: mvn --version
-      register: mvn_version_output
-      ignore_errors: yes
-
-    - name: Afficher la version de Maven si déjà installée
-      debug:
-        msg: "Maven est déjà installé : {{ mvn_version_output.stdout }}"
-      when: mvn_version_output.rc == 0
-
-    - name: Installer Maven si ce n'est pas déjà fait
-      package:
-        name: maven
+    - name: Installation d'OpenJDK Java 17
+      apt:
+        name: openjdk-17-jdk
         state: present
-      when: mvn_version_output.rc != 0
+
+    - name: Installation de Tomcat
+      apt:
+        name: tomcat9
+        state: present
+
+    - name: Démarrage du service Tomcat
+      service:
+        name: tomcat9
+        state: started
+        enabled: yes
